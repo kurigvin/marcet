@@ -24,4 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use App\Http\Controllers\ListingController;
+
+Route::resource('listings', ListingController::class)
+    ->middleware('auth');
+
+
 require __DIR__.'/auth.php';

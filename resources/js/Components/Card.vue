@@ -1,11 +1,5 @@
-<script setup>
-
-</script>
-
 <template>
-  $END$
+    <div class="bg-white shadow rounded p-4">
+        <slot />
+    </div>
 </template>
-
-<style scoped>
-
-</style>

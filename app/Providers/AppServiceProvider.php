@@ -2,24 +2,27 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Vite;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
-class AppServiceProvider extends ServiceProvider
+// Импортируем модель и политику
+use App\Models\Listing;
+use App\Policies\ListingPolicy;
+
+class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Связь моделей с их политиками
      */
-    public function register(): void
-    {
-        //
-    }
+    protected $policies = [
+        Listing::class => ListingPolicy::class,
+    ];
 
     /**
-     * Bootstrap any application services.
+     * Зарегистрировать политики авторизации.
      */
     public function boot(): void
     {
-        Vite::prefetch(concurrency: 3);
+        $this->registerPolicies();
     }
 }
